@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
@@ -58,7 +59,7 @@ public class TableAdapter<T> extends BaseAdapter {
         return convertView;
     }
 
-    public void setViewHolder(ViewHolder<T> h){
+    public void setViewHolder(@NotNull ViewHolder<T> h){
         this.mViewHolder = h;
     }
 

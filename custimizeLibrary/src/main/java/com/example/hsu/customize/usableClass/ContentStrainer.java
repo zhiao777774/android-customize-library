@@ -1,6 +1,5 @@
 package com.example.hsu.customize.usableClass;
 
-import org.jetbrains.annotations.NotNull;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -17,14 +16,12 @@ public class ContentStrainer {
     public static final String REGEX_SPACE = "\\s*|\t|\r|\n|&nbsp";
 
 
-    @NotNull
     public static String delAllTag(String content){
         content = delHTMLTag(content);
         content = delSpaceTag(content);
         return content.trim();
     }
 
-    @NotNull
     public static String delSpaceTag(String content){
         //過濾空白符、回車鍵及換行符
         content = strain(content, REGEX_SPACE);

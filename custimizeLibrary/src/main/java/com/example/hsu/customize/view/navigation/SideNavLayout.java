@@ -9,8 +9,6 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import com.example.hsu.customize.R;
-import com.example.hsu.customize.view.navigation.SideNavItem;
-import com.example.hsu.customize.view.navigation.SideNavItemView;
 
 import java.util.List;
 
@@ -52,8 +50,7 @@ public class SideNavLayout extends LinearLayout implements View.OnClickListener 
         mItemClickListener.onItemClick((SideNavItem) v.getTag());
     }
 
-    public void setNavItemsAndListener(List<SideNavItem> navItemList, OnItemClickListener listener) {
-        this.mItemClickListener = listener;
+    public void setNavigationItems(List<SideNavItem> navItemList, int resource, int itemIconId, int itemTextId) {
         this.navItemList = navItemList;
 
         LayoutParams params = new LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT);
@@ -64,8 +61,9 @@ public class SideNavLayout extends LinearLayout implements View.OnClickListener 
             for (int index = 0; index < navItemList.size(); index++) {
                 SideNavItemView itemView = new SideNavItemView(getContext());
                 itemView.setDefaultTextColor(colorStateList);
-                itemView.setTag(this.navItemList.get(index));
-                itemView.initItemData(this.navItemList.get(index));
+                itemView.setResourceView(resource, itemIconId, itemTextId);
+                itemView.setTag(navItemList.get(index));
+                itemView.initItemData(navItemList.get(index));
                 itemView.setOnClickListener(this);
                 addView(itemView, params);
             }
@@ -92,6 +90,10 @@ public class SideNavLayout extends LinearLayout implements View.OnClickListener 
     }
 
     OnItemClickListener mItemClickListener;
+
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.mItemClickListener = listener;
+    }
 
     public interface OnItemClickListener {
         void onItemClick(SideNavItem item);

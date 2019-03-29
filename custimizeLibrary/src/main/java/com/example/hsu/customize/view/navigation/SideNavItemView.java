@@ -9,10 +9,9 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.example.hsu.customize.R;
-import com.example.hsu.customize.view.navigation.SideNavItem;
-
 public final class SideNavItemView extends LinearLayout {
+    private int mResource, mItemIconId, mItemTextId;
+
     private ColorStateList colorStateList;
     private ImageView mImgItemIcon;
     private TextView mTxtItemText;
@@ -34,12 +33,18 @@ public final class SideNavItemView extends LinearLayout {
         this.colorStateList = colorStateList;
     }
 
+    void setResourceView(int resource, int itemIconId, int itemTextId) {
+        this.mResource = resource;
+        this.mItemIconId = itemIconId;
+        this.mItemTextId = itemTextId;
+    }
+
     private void initView(Context context) {
         setOrientation(VERTICAL);
         setGravity(Gravity.CENTER);
-        LayoutInflater.from(context).inflate(R.layout.side_navigation_item, this, true);
-        mImgItemIcon = (ImageView) findViewById(R.id.item_icon);
-        mTxtItemText = (TextView) findViewById(R.id.item_text);
+        LayoutInflater.from(context).inflate(mResource, this, true);
+        mImgItemIcon = (ImageView) findViewById(mItemIconId);
+        mTxtItemText = (TextView) findViewById(mItemTextId);
     }
 
     void initItemData(SideNavItem item) {

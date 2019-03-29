@@ -4,4 +4,8 @@
         <attr name="android:prompt" />
         <attr name="android:entries" />
     </declare-styleable>
+    
+    <declare-styleable name="SideNavLayout">
+        <attr name="itemSelectedColor" format="reference" />
+    </declare-styleable>
 </resources>

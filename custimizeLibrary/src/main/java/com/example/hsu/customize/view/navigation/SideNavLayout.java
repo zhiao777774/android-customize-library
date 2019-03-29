@@ -67,6 +67,7 @@ public class SideNavLayout extends LinearLayout implements View.OnClickListener 
                 itemView.setOnClickListener(this);
                 addView(itemView, params);
             }
+            setSelectionItem(0);
         } else {
             throw new IllegalArgumentException("NavItems can not be empty");
         }

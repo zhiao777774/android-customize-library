@@ -9,6 +9,10 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.example.hsu.customize.R;
+
+import org.w3c.dom.Attr;
+
 public final class SideNavItemView extends LinearLayout {
     private int mResource, mItemIconId, mItemTextId;
 
@@ -17,15 +21,24 @@ public final class SideNavItemView extends LinearLayout {
     private TextView mTxtItemText;
 
     public SideNavItemView(Context context) {
-        this(context, null);
+        this(context, null, R.layout.side_navigation_item, R.id.item_icon, R.id.item_text);
+    }
+
+    public SideNavItemView(Context context, int resource, int itemIconId, int itemTextId) {
+        this(context, null, 0, resource, itemIconId, itemTextId);
     }
 
     public SideNavItemView(Context context, AttributeSet attrs) {
-        this(context, attrs, 0);
+        this(context, attrs, R.layout.side_navigation_item, R.id.item_icon, R.id.item_text);
     }
 
-    public SideNavItemView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public SideNavItemView(Context context, AttributeSet attrs, int resource, int itemIconId, int itemTextId) {
+        this(context, attrs, 0, resource, itemIconId, itemTextId);
+    }
+
+    public SideNavItemView(Context context, AttributeSet attrs, int defStyleAttr, int resource, int itemIconId, int itemTextId) {
         super(context, attrs, defStyleAttr);
+        setResourceView(resource, itemIconId, itemTextId);
         initView(context);
     }
 
@@ -33,7 +46,7 @@ public final class SideNavItemView extends LinearLayout {
         this.colorStateList = colorStateList;
     }
 
-    void setResourceView(int resource, int itemIconId, int itemTextId) {
+    private void setResourceView(int resource, int itemIconId, int itemTextId) {
         this.mResource = resource;
         this.mItemIconId = itemIconId;
         this.mItemTextId = itemTextId;
@@ -42,9 +55,14 @@ public final class SideNavItemView extends LinearLayout {
     private void initView(Context context) {
         setOrientation(VERTICAL);
         setGravity(Gravity.CENTER);
-        View inflate = inflate(context, mResource, this);
-        mImgItemIcon = (ImageView) inflate.findViewById(mItemIconId);
-        mTxtItemText = (TextView) inflate.findViewById(mItemTextId);
+        if (mResource == R.layout.side_navigation_item) {
+            mImgItemIcon = (ImageView) findViewById(mItemIconId);
+            mTxtItemText = (TextView) findViewById(mItemTextId);
+        } else {
+            View inflate = inflate(context, mResource, this);
+            mImgItemIcon = (ImageView) inflate.findViewById(mItemIconId);
+            mTxtItemText = (TextView) inflate.findViewById(mItemTextId);
+        }
     }
 
     void initItemData(SideNavItem item) {

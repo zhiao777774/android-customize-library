@@ -59,9 +59,8 @@ public class SideNavLayout extends LinearLayout implements View.OnClickListener 
 
         if (this.navItemList != null && this.navItemList.size() > 0) {
             for (int index = 0; index < navItemList.size(); index++) {
-                SideNavItemView itemView = new SideNavItemView(getContext());
+                SideNavItemView itemView = new SideNavItemView(getContext(), resource, itemIconId, itemTextId);
                 itemView.setDefaultTextColor(colorStateList);
-                itemView.setResourceView(resource, itemIconId, itemTextId);
                 itemView.setTag(navItemList.get(index));
                 itemView.initItemData(navItemList.get(index));
                 itemView.setOnClickListener(this);

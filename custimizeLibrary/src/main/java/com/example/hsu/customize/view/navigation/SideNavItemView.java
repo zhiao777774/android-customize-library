@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.res.ColorStateList;
 import android.util.AttributeSet;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -25,7 +26,7 @@ public final class SideNavItemView extends LinearLayout {
     }
 
     public SideNavItemView(Context context, int resource, int itemIconId, int itemTextId) {
-        this(context, null, 0, resource, itemIconId, itemTextId);
+        this(context, null, resource, itemIconId, itemTextId);
     }
 
     public SideNavItemView(Context context, AttributeSet attrs) {
@@ -59,7 +60,7 @@ public final class SideNavItemView extends LinearLayout {
             mImgItemIcon = (ImageView) findViewById(mItemIconId);
             mTxtItemText = (TextView) findViewById(mItemTextId);
         } else {
-            View inflate = inflate(context, mResource, this);
+            View inflate = LayoutInflater.from(context).inflate(mResource, this, true);
             mImgItemIcon = (ImageView) inflate.findViewById(mItemIconId);
             mTxtItemText = (TextView) inflate.findViewById(mItemTextId);
         }

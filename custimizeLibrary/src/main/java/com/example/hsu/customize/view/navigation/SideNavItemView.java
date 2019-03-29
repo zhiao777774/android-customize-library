@@ -12,7 +12,6 @@ import android.widget.TextView;
 
 import com.example.hsu.customize.R;
 
-import org.w3c.dom.Attr;
 
 public final class SideNavItemView extends LinearLayout {
     private int mResource, mItemIconId, mItemTextId;

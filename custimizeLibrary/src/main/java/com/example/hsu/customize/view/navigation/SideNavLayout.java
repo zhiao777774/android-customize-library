@@ -53,7 +53,7 @@ public class SideNavLayout extends LinearLayout implements View.OnClickListener 
     public void setNavigationItems(List<SideNavItem> navItemList, int resource, int itemIconId, int itemTextId) {
         this.navItemList = navItemList;
 
-        LayoutParams params = new LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT);
+        LayoutParams params = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
         params.setMargins(12,9,12,10);
 
         if (this.navItemList != null && this.navItemList.size() > 0) {

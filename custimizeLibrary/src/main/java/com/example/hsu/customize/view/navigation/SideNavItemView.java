@@ -56,7 +56,7 @@ public final class SideNavItemView extends LinearLayout {
     }
 
     private void initView(Context context) {
-        //setOrientation(VERTICAL);
+        setOrientation(HORIZONTAL);
         setGravity(Gravity.CENTER);
         if (mResource == R.layout.side_navigation_item) {
             mImgItemIcon = (ImageView) findViewById(mImgResId);

@@ -31,16 +31,9 @@ public class SideNavLayout extends LinearLayout implements View.OnClickListener 
     }
 
     private void initAttr(Context context, AttributeSet attrs) {
-        //setOrientation(HORIZONTAL);
+        setOrientation(VERTICAL);
         TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.SideNavLayout);
         colorStateList = typedArray.getColorStateList(R.styleable.SideNavLayout_itemSelectedColor);
-        /*for (int i = 0; i < typedArray.getIndexCount(); i++) {
-            int attr = typedArray.getIndex(i);
-            if (attr == R.styleable.SideNavLayout_itemSelectedColor) {
-                colorStateList = typedArray.getColorStateList(attr);
-                break;
-            }
-        }*/
         typedArray.recycle();
     }
 
@@ -52,7 +45,7 @@ public class SideNavLayout extends LinearLayout implements View.OnClickListener 
     public void setNavigationItems(List<SideNavItem> navItemList, int resource, int itemIconId, int itemTextId) {
         this.mNavItemList = navItemList;
 
-        LayoutParams params = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        LayoutParams params = new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         params.setMargins(12,10,12,10);
 
         if (this.mNavItemList != null && this.mNavItemList.size() > 0) {

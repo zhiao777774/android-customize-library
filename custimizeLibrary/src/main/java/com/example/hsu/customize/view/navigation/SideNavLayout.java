@@ -13,10 +13,9 @@ import com.example.hsu.customize.R;
 import java.util.List;
 
 public class SideNavLayout extends LinearLayout implements View.OnClickListener  {
-    private List<SideNavItem> navItemList;
-    private View selectedView;
+    private List<SideNavItem> mNavItemList;
+    private View mSelectedView;
     private ColorStateList colorStateList;
-    //private ViewPager mViewPager;
 
     public SideNavLayout(Context context) {
         this(context, null);
@@ -32,7 +31,7 @@ public class SideNavLayout extends LinearLayout implements View.OnClickListener 
     }
 
     private void initAttr(Context context, AttributeSet attrs) {
-        setOrientation(HORIZONTAL);
+        //setOrientation(HORIZONTAL);
         TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.SideNavLayout);
         colorStateList = typedArray.getColorStateList(R.styleable.SideNavLayout_itemSelectedColor);
         /*for (int i = 0; i < typedArray.getIndexCount(); i++) {
@@ -51,17 +50,17 @@ public class SideNavLayout extends LinearLayout implements View.OnClickListener 
     }
 
     public void setNavigationItems(List<SideNavItem> navItemList, int resource, int itemIconId, int itemTextId) {
-        this.navItemList = navItemList;
+        this.mNavItemList = navItemList;
 
         LayoutParams params = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        params.setMargins(12,9,12,10);
+        params.setMargins(12,10,12,10);
 
-        if (this.navItemList != null && this.navItemList.size() > 0) {
-            for (int index = 0; index < navItemList.size(); index++) {
+        if (this.mNavItemList != null && this.mNavItemList.size() > 0) {
+            for (int i = 0; i < navItemList.size(); i++) {
                 SideNavItemView itemView = new SideNavItemView(getContext(), resource, itemIconId, itemTextId);
                 itemView.setDefaultTextColor(colorStateList);
-                itemView.setTag(navItemList.get(index));
-                itemView.initItemData(navItemList.get(index));
+                itemView.setTag(navItemList.get(i));
+                itemView.initItemData(navItemList.get(i));
                 itemView.setOnClickListener(this);
                 addView(itemView, params);
             }
@@ -72,19 +71,35 @@ public class SideNavLayout extends LinearLayout implements View.OnClickListener 
     }
 
     public void setSelectionItem(int position) {
-        if (position >= 0 && position < navItemList.size()) {
+        if (position >= 0 && position < mNavItemList.size()) {
             View view = getChildAt(position);
-            if (selectedView != view) {
+            if (mSelectedView != view) {
                 view.setSelected(true);
-                if (selectedView != null) {
-                    selectedView.setSelected(false);
+                if (mSelectedView != null) {
+                    mSelectedView.setSelected(false);
                 }
-                selectedView = view;
+                mSelectedView = view;
             }
         }
     }
 
-    public void setItemSelectedColor(ColorStateList colorStateList){
+    public View getItem(int position) {
+        return getChildAt(position);
+    }
+
+    public int getItemId(int position) {
+        return getChildAt(position).getId();
+    }
+
+    public View getSelectionItem() {
+        return this.mSelectedView;
+    }
+
+    public int getSelectionItemPosition() {
+        return indexOfChild(mSelectedView);
+    }
+
+    public void setOnItemSelectedColor(ColorStateList colorStateList) {
         this.colorStateList = colorStateList;
     }
 

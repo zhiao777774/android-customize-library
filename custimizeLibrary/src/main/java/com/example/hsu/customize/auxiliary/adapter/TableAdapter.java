@@ -1,4 +1,4 @@
-package com.example.hsu.customize.auxiliary;
+package com.example.hsu.customize.auxiliary.adapter;
 
 import android.content.Context;
 import android.util.Log;

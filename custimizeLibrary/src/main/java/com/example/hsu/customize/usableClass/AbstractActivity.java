@@ -6,7 +6,7 @@ public abstract class AbstractActivity extends AppCompatActivity {
 
     public abstract void create();
 
-    public void reStart() { }
+    public void restart() { }
 
     public void destroy() { }
 
